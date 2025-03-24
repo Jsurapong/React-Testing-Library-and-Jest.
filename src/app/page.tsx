@@ -7,7 +7,7 @@ import UserList from "@/components/UserList";
 export default function Home() {
   const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
 
-  const onUserAdd = (name: string, email: string) => {
+  const onUserAdd = ({ name, email }: { name: string; email: string }) => {
     setUsers((prev) => [...prev, { name, email }]);
   };
 
