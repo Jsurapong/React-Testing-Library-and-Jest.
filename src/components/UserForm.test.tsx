@@ -8,6 +8,7 @@ test("renders learn react link", () => {
   render(<UserForm onUserAdd={jest.fn} />);
 
   //manipulate
+
   const inputs = screen.getAllByRole("textbox");
   const button = screen.getByRole("button");
 
@@ -55,7 +56,9 @@ test("it calls onUserAdd when the form is submitted", async () => {
   render(<UserForm onUserAdd={mockOnUserAdd} />);
 
   // find the two inputs
-  const [nameInput, emailInput] = screen.getAllByRole("textbox");
+  //   const [nameInput, emailInput] = screen.getAllByRole("textbox");
+  const nameInput = screen.getByRole("textbox", { name: /name/i });
+  const emailInput = screen.getByRole("textbox", { name: /email/i });
   // simulate typing in the name;
   await user.click(nameInput);
   await user.keyboard("John Doe");

@@ -17,8 +17,9 @@ const UserForm = ({ onUserAdd }: UserFormProps) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input
+          id="name"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -26,8 +27,12 @@ const UserForm = ({ onUserAdd }: UserFormProps) => {
         />
       </div>
       <div>
-        <label>Email</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
       <button type="submit">Add user</button>
     </form>
