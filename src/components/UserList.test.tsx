@@ -2,17 +2,20 @@ import { render, screen, within } from "@testing-library/react";
 
 import UserList from "./UserList";
 
-test("renders learn react link", () => {
-  // render
-  render(
-    <UserList
-      users={[
-        { name: "jane", email: "jane@email.co" },
-        { name: "sam", email: "sam@email.co" },
-      ]}
-    />
-  );
+const renderComponent = () => {
+  const users = [
+    { name: "jane", email: "jane@email.co" },
+    { name: "sam", email: "sam@email.co" },
+  ];
 
+  render(<UserList users={users} />);
+
+  return { users };
+};
+
+test("render one row per user", () => {
+  // render
+  renderComponent();
   // help with the query
   // screen.logTestingPlaygroundURL();
 
@@ -22,4 +25,16 @@ test("renders learn react link", () => {
   // assertion : correct number of rows in the table
 
   expect(rows).toHaveLength(2);
+});
+
+test("render the email and name of each user", () => {
+  // render
+  const { users } = renderComponent();
+
+  for (const user of users) {
+    const name = screen.getByRole("cell", { name: user.name });
+    const email = screen.getByRole("cell", { name: user.email });
+    expect(name).toBeInTheDocument();
+    expect(email).toBeInTheDocument();
+  }
 });
