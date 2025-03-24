@@ -1,14 +1,15 @@
-"use client";
-
 import { FormEvent, useState } from "react";
 
-const UserForm = () => {
+type UserFormProps = { onUserAdd: (name: string, email: string) => void };
+const UserForm = ({ onUserAdd }: UserFormProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ name, email });
+    onUserAdd(name, email);
+    setName("");
+    setEmail("");
   };
 
   return (
